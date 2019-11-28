@@ -3,15 +3,14 @@ import time
 import threading
 import pygame
 from pygame.locals import MOUSEBUTTONDOWN,KEYDOWN,SCRAP_TEXT
-from bf_common import BFControlId
+from bf_common import BFControlId,BFBase
 
 CLICK_EFFECT_TIME = 100
-class BFEdit(object):
+class BFEdit(BFBase):
     def __init__(self, parent, rect, text='Button', click=None):
         self.x,self.y,self.width,self.height = rect
         self.bg_color = (255,255,255)
         self.parent = parent
-        self.panel = None
         self.surface = parent.subsurface(rect)
         self.in_edit = False
         self.in_click = False

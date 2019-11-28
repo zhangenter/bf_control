@@ -18,4 +18,11 @@ class BFControlId(object):
         self.id += 1
         return self.id
 
+class BFBase(object):
+    def __init__(self):
+        self.panel = None
+
+    def clear_foucs(self):
+        pass
+
 CLICK_EFFECT_TIME = 100
