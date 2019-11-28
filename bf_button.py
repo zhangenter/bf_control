@@ -2,24 +2,10 @@
 import threading
 import pygame
 from pygame.locals import MOUSEBUTTONDOWN
-
-class BFControlId(object):
-    _instance_lock = threading.Lock()
-    def __init__(self):
-        self.id = 1
-
-    @classmethod
-    def instance(cls, *args, **kwargs):
-        if not hasattr(BFControlId, "_instance"):
-            BFControlId._instance = BFControlId(*args, **kwargs)
-        return BFControlId._instance
-
-    def get_new_id(self):
-        self.id += 1
-        return self.id
+from bf_common import BFControlId,BFBase
 
 CLICK_EFFECT_TIME = 100
-class BFButton(object):
+class BFButton(BFBase):
     def __init__(self, parent, rect, text='Button', click=None):
         self.x,self.y,self.width,self.height = rect
         self.bg_color = (225,225,225)
@@ -34,6 +20,8 @@ class BFButton(object):
         self._click = click
         self._visible = True
         self.init_font()
+
+    
 
     def init_font(self):
         font = pygame.font.Font(None, 28)
@@ -82,6 +70,7 @@ class BFButton(object):
                 pressed_array = pygame.mouse.get_pressed()
                 if pressed_array[0]:
                     self.in_click = True
+                    if self.panel: self.panel.clear_foucs()
                     self.click_loss_time = pygame.time.get_ticks() + CLICK_EFFECT_TIME
                     self.click_event_id = pygame.USEREVENT+self.ctl_id
                     pygame.time.set_timer(self.click_event_id,CLICK_EFFECT_TIME-10)
