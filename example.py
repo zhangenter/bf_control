@@ -7,6 +7,7 @@ from bf_panel import BFPanel
 pygame.init()
 screencaption = pygame.display.set_caption('bf control')
 screen = pygame.display.set_mode((400,400))
+pygame.scrap.init()
 
 def do_click1(btn):
     pygame.display.set_caption('i click %s,ctl id is %s' % (btn._text,btn.ctl_id))

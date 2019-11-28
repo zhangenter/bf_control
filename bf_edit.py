@@ -55,7 +55,6 @@ class BFEdit(BFBase):
 
     def update(self, event):
         if self.in_edit and event.type == KEYDOWN:
-            print(event)
             if event.key == 8:
                 if len(self._text)>0:
                     self.text = self._text[:-1]
