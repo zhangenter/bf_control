@@ -60,9 +60,9 @@ class BFEdit(BFBase):
                     self.text = self._text[:-1]
             elif event.key == 118 and (event.mod == 64 or event.mod==1024):
                 scrap_text = pygame.scrap.get(SCRAP_TEXT)
-                if 'Windows' in platform.platform():
-                    scrap_text = scrap_text.decode('utf-8').strip('\x00')
                 if scrap_text:
+                    if 'Windows' in platform.platform():
+                        scrap_text = scrap_text.decode('utf-8').strip('\x00')
                     self.text = self._text+scrap_text
             else:
                 self.text = self._text+event.unicode
