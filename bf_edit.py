@@ -1,6 +1,7 @@
 # -*- coding=utf-8 -*-
 import time
 import threading
+import platform
 import pygame
 from pygame.locals import MOUSEBUTTONDOWN,KEYDOWN,SCRAP_TEXT
 from bf_common import BFControlId,BFBase
@@ -54,11 +55,14 @@ class BFEdit(BFBase):
 
     def update(self, event):
         if self.in_edit and event.type == KEYDOWN:
+            print(event)
             if event.key == 8:
                 if len(self._text)>0:
                     self.text = self._text[:-1]
-            elif event.key == 118 and event.mod>=1024:
+            elif event.key == 118 and (event.mod == 64 or event.mod==1024):
                 scrap_text = pygame.scrap.get(SCRAP_TEXT)
+                if 'Windows' in platform.platform():
+                    scrap_text = scrap_text.decode('utf-8').strip('\x00')
                 if scrap_text:
                     self.text = self._text+scrap_text
             else:
