@@ -24,6 +24,7 @@ class BFBase(object):
         self.panel = None
         self._visible = True
         self._text_align = TEXT_ALIGN_MIDDLE
+        self._font = DEFAULT_SM_FONT
         self.ctl_id = BFControlId().instance().get_new_id()
 
     def init_font(self):
@@ -47,13 +48,25 @@ class BFBase(object):
     def text_align(self):
         return self._text_align
 
-    @visible.setter
+    @text_align.setter
     def text_align(self, value):
         self._text_align = value
         self.init_font()
 
+    @property
+    def font(self):
+        return self._font
+
+    @font.setter
+    def font(self, value):
+        self._font = value
+        self.init_font()
+
 CLICK_EFFECT_TIME = 100
 DEFAULT_FONT = pygame.font.Font(u'syht.otf', 28)
+DEFAULT_SM_FONT = pygame.font.Font(u'syht.otf', 20)
+def get_default_font(size):
+    return pygame.font.Font(u'syht.otf', int(size))
 
 TEXT_ALIGN_LEFT = 1
 TEXT_ALIGN_MIDDLE = 2

@@ -23,17 +23,16 @@ class BFButton(BFBase):
         self.init_font()
 
     def init_font(self):
-        font = DEFAULT_FONT
         white = 100, 100, 100
-        self.textImage = font.render(self._text, True, white)
+        self.textImage = self.font.render(self._text, True, white)
         w, h = self.textImage.get_size()
         self._ty = (self.height - h) / 2
         if self._text_align == TEXT_ALIGN_LEFT:
             self._tx = PADING
         elif self._text_align == TEXT_ALIGN_MIDDLE:
-            self._tx = (self.width - PADING * 2 - w) / 2
+            self._tx = (self.width - PADING - w) / 2
         else:
-            self._tx = (self.width - PADING - w) 
+            self._tx = (self.width - PADING * 2 - w) 
 
     @property
     def text(self):

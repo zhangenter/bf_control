@@ -26,20 +26,19 @@ class BFEdit(BFBase):
         self.in_edit = False
 
     def init_font(self):
-        font = DEFAULT_FONT
         white = 100, 100, 100
-        self.textImage = font.render(self._text, True, white)
-        self.cursorImage = font.render('|', True, (170,205,255))
+        self.textImage = self.font.render(self._text, True, white)
+        self.cursorImage = self.font.render('|', True, (170,205,255))
         w, h = self.textImage.get_size()
         self._ty = (self.height - h) / 2
         self._cy = (self.height - h) / 2
         if self._text_align == TEXT_ALIGN_LEFT:
             self._tx = PADDING
         elif self._text_align == TEXT_ALIGN_MIDDLE:
-            self._tx = (self.width - PADDING * 2 - w) / 2
+            self._tx = (self.width - PADDING - w) / 2
         else:
-            self._tx = (self.width - PADDING - w) 
-        self._cx = self._tx + w - PADDING
+            self._tx = (self.width - PADDING * 2 - w) 
+        self._cx = self._tx + w
 
     @property
     def text(self):

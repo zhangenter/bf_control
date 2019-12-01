@@ -2,7 +2,7 @@
 import pygame
 
 pygame.init()
-screen = pygame.display.set_mode((600,400))
+screen = pygame.display.set_mode((600,420))
 pygame.scrap.init()
 
 from bf_common import TEXT_ALIGN_LEFT,TEXT_ALIGN_MIDDLE,TEXT_ALIGN_RIGHT
@@ -10,6 +10,7 @@ from bf_edit import BFEdit
 from bf_button import BFButton
 from bf_panel import BFPanel
 from bf_label import BFLabel
+from bf_table import BFTable
 
 screencaption = pygame.display.set_caption('bf control')
 
@@ -59,6 +60,22 @@ edit3 = BFEdit(screen, (380,140,160,40),text='test3')
 edit3.text_align = TEXT_ALIGN_RIGHT
 btn_panel.add_control(edit3)
 
+headers = (u'编号',u'姓名',u'年龄',u'语文成绩',u'数学成绩',u'英语成绩')
+rows = []
+rows.append((1,u'王小明',11,99,95,91))
+rows.append((2,u'李小红',10,97,88,90))
+rows.append((3,u'张小强',11,99,100,100))
+rows.append((4,u'王小明',11,99,95,91))
+rows.append((5,u'李小红',10,97,88,90))
+rows.append((6,u'张小强',11,99,100,100))
+rows.append((7,u'王小明',11,99,95,91))
+rows.append((8,u'李小红',10,97,88,90))
+rows.append((9,u'张小强',11,99,100,100))
+rows.append((10,u'王小明',11,99,95,91))
+rows.append((11,u'李小红',10,97,88,90))
+rows.append((12,u'张小强',11,99,100,100))
+table = BFTable(screen, (20,200,560,200), headers, rows)
+btn_panel.add_control(table)
 
 while True:
     for event in pygame.event.get():

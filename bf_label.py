@@ -2,7 +2,7 @@
 import threading
 import pygame
 from pygame.locals import MOUSEBUTTONDOWN
-from bf_common import BFControlId,BFBase,DEFAULT_FONT,TEXT_ALIGN_LEFT,TEXT_ALIGN_MIDDLE,TEXT_ALIGN_RIGHT
+from bf_common import BFControlId,BFBase,DEFAULT_FONT,DEFAULT_SM_FONT,TEXT_ALIGN_LEFT,TEXT_ALIGN_MIDDLE,TEXT_ALIGN_RIGHT
 
 CLICK_EFFECT_TIME = 100
 PADDING = 4
@@ -23,17 +23,16 @@ class BFLabel(BFBase):
         self.init_font()
 
     def init_font(self):
-        font = DEFAULT_FONT
         white = 100, 100, 100
-        self.textImage = font.render(self._text, True, white)
+        self.textImage = self.font.render(self._text, True, white)
         w, h = self.textImage.get_size()
         self._ty = (self.height - h) / 2
         if self._text_align == TEXT_ALIGN_LEFT:
             self._tx = PADDING
         elif self._text_align == TEXT_ALIGN_MIDDLE:
-            self._tx = (self.width - PADDING * 2 - w) / 2
+            self._tx = (self.width - PADDING - w) / 2
         else:
-            self._tx = (self.width - PADDING - w) 
+            self._tx = (self.width - PADDING * 2 - w) 
 
     @property
     def text(self):
