@@ -4,11 +4,13 @@ import threading
 import platform
 import pygame
 from pygame.locals import MOUSEBUTTONDOWN,KEYDOWN,SCRAP_TEXT
-from bf_common import BFControlId,BFBase,DEFAULT_FONT
+from bf_common import BFControlId,BFBase,DEFAULT_FONT,TEXT_ALIGN_LEFT,TEXT_ALIGN_MIDDLE,TEXT_ALIGN_RIGHT
 
 CLICK_EFFECT_TIME = 100
+PADDING = 4
 class BFEdit(BFBase):
     def __init__(self, parent, rect, text='Button', click=None):
+        super().__init__()
         self.x,self.y,self.width,self.height = rect
         self.bg_color = (255,255,255)
         self.parent = parent
@@ -17,9 +19,7 @@ class BFEdit(BFBase):
         self.in_click = False
         self.click_loss_time = 0
         self.click_event_id = -1
-        self.ctl_id = BFControlId().instance().get_new_id()
         self._text = text
-        self._visible = True
         self.init_font()
 
     def clear_foucs(self):
@@ -31,10 +31,15 @@ class BFEdit(BFBase):
         self.textImage = font.render(self._text, True, white)
         self.cursorImage = font.render('|', True, (170,205,255))
         w, h = self.textImage.get_size()
-        self._tx = (self.width - w) / 2
         self._ty = (self.height - h) / 2
-        self._cx = (self.width + w) / 2
         self._cy = (self.height - h) / 2
+        if self._text_align == TEXT_ALIGN_LEFT:
+            self._tx = PADDING
+        elif self._text_align == TEXT_ALIGN_MIDDLE:
+            self._tx = (self.width - PADDING * 2 - w) / 2
+        else:
+            self._tx = (self.width - PADDING - w) 
+        self._cx = self._tx + w - PADDING
 
     @property
     def text(self):
@@ -44,14 +49,6 @@ class BFEdit(BFBase):
     def text(self, value):
         self._text = value
         self.init_font()
-
-    @property
-    def visible(self):
-        return self._visible
-
-    @visible.setter
-    def visible(self, value):
-        self._visible = value
 
     def update(self, event):
         if self.in_edit and event.type == KEYDOWN:
@@ -66,10 +63,10 @@ class BFEdit(BFBase):
                     self.text = self._text+scrap_text
             else:
                 self.text = self._text+event.unicode
-        if self.in_click and event.type == self.click_event_id:
+        if self.in_click and event.type == pygame.USEREVENT+1 and BFControlId().instance().click_id == self.ctl_id:
             self.in_edit = True
             self.click_event_id = -1
-            return
+            return True
 
         x, y = pygame.mouse.get_pos()
         if x > self.x and x < self.x + self.width and y > self.y and y < self.y + self.height:
@@ -79,8 +76,10 @@ class BFEdit(BFBase):
                     self.in_click = True
                     if self.panel: self.panel.clear_foucs()
                     self.click_loss_time = pygame.time.get_ticks() + CLICK_EFFECT_TIME
-                    self.click_event_id = pygame.USEREVENT+self.ctl_id
-                    pygame.time.set_timer(self.click_event_id,CLICK_EFFECT_TIME-10)
+                    BFControlId().instance().click_id = self.ctl_id
+                    pygame.time.set_timer(pygame.USEREVENT+1,CLICK_EFFECT_TIME-10)
+                    return True
+        return False
 
     def draw(self):
         if not self._visible:

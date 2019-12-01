@@ -5,9 +5,9 @@ from pygame.locals import MOUSEBUTTONDOWN
 from bf_common import BFControlId,BFBase,DEFAULT_FONT,TEXT_ALIGN_LEFT,TEXT_ALIGN_MIDDLE,TEXT_ALIGN_RIGHT
 
 CLICK_EFFECT_TIME = 100
-PADING = 4
-class BFButton(BFBase):
-    def __init__(self, parent, rect, text='Button', click=None):
+PADDING = 4
+class BFLabel(BFBase):
+    def __init__(self, parent, rect, text='Label', click=None):
         super().__init__()
         self.x,self.y,self.width,self.height = rect
         self.bg_color = (225,225,225)
@@ -29,11 +29,11 @@ class BFButton(BFBase):
         w, h = self.textImage.get_size()
         self._ty = (self.height - h) / 2
         if self._text_align == TEXT_ALIGN_LEFT:
-            self._tx = PADING
+            self._tx = PADDING
         elif self._text_align == TEXT_ALIGN_MIDDLE:
-            self._tx = (self.width - PADING * 2 - w) / 2
+            self._tx = (self.width - PADDING * 2 - w) / 2
         else:
-            self._tx = (self.width - PADING - w) 
+            self._tx = (self.width - PADDING - w) 
 
     @property
     def text(self):
@@ -84,41 +84,5 @@ class BFButton(BFBase):
                 self.in_click = False
         if not self._visible:
             return
-        if self.in_click:
-            r,g,b = self.bg_color
-            k = 0.95
-            self.surface.fill((r*k, g*k, b*k))
-        else:
-            self.surface.fill(self.bg_color)
-        if self.is_hover:
-            pygame.draw.rect(self.surface, (0,0,0), (0,0,self.width,self.height), 1)
-            pygame.draw.rect(self.surface, (100,100,100), (0,0,self.width-1,self.height-1), 1)
-            layers = 5
-            r_step = (210-170)/layers
-            g_step = (225-205)/layers
-            for i in range(layers):
-                pygame.draw.rect(self.surface, (170+r_step*i, 205+g_step*i, 255), (i, i, self.width - 2 - i*2, self.height - 2 - i*2), 1)
-        else:
-            self.surface.fill(self.bg_color)
-            pygame.draw.rect(self.surface, (0,0,0), (0,0,self.width,self.height), 1)
-            pygame.draw.rect(self.surface, (100,100,100), (0,0,self.width-1,self.height-1), 1)
-            pygame.draw.rect(self.surface, self.bg_color, (0,0,self.width-2,self.height-2), 1)
 
         self.surface.blit(self.textImage, (self._tx, self._ty))
-
-class BFButtonGroup(object):
-    def __init__(self):
-        self.btn_list = []
-
-    def add_button(self, button):
-        self.btn_list.append(button)
-
-    def make_button(self, screen, rect, text='Button', click=None):
-        button = BFButton(screen, rect,text=text,click=click)
-        self.add_button(button)
-
-    def update(self, event):
-        for button in self.btn_list: button.update(event)
-
-    def draw(self):
-        for button in self.btn_list: button.draw()
