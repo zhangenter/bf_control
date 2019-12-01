@@ -1,5 +1,5 @@
 # -*- coding=utf-8 -*-
-import threading
+import time,sys,threading,platform
 import pygame
 from pygame.locals import MOUSEBUTTONDOWN
 from bf_common import BFControlId,BFBase,DEFAULT_FONT,TEXT_ALIGN_LEFT,TEXT_ALIGN_MIDDLE,TEXT_ALIGN_RIGHT
@@ -8,7 +8,7 @@ CLICK_EFFECT_TIME = 100
 PADING = 4
 class BFButton(BFBase):
     def __init__(self, parent, rect, text='Button', click=None):
-        super().__init__()
+        super(BFButton, self).__init__()
         self.x,self.y,self.width,self.height = rect
         self.bg_color = (225,225,225)
         self.parent = parent

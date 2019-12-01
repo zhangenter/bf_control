@@ -35,10 +35,10 @@ def do_click6(btn):
 
 btn_panel = BFPanel()
 btn_panel.add_control(BFButton(screen, (20,20,160,40),text=u'测试',click=do_click1))
-btn_panel.add_control(BFButton(screen, (200,20,160,40),text='隐藏',click=do_click2))
-btn_panel.add_control(BFButton(screen, (380,20,160,40),text='退出',click=do_click3))
+btn_panel.add_control(BFButton(screen, (200,20,160,40),text=u'隐藏',click=do_click2))
+btn_panel.add_control(BFButton(screen, (380,20,160,40),text=u'退出',click=do_click3))
 
-bf_lebel = BFLabel(screen, (20,80,160,40),text='文字显示')
+bf_lebel = BFLabel(screen, (20,80,160,40),text=u'文字显示')
 bf_lebel.text_align = TEXT_ALIGN_RIGHT
 btn_panel.add_control(bf_lebel)
 btn21 = BFButton(screen, (200,80,100,40),text=u'靠左',click=do_click4)
@@ -51,12 +51,12 @@ btn23 = BFButton(screen, (440,80,100,40),text=u'靠右',click=do_click6)
 btn23.text_align = TEXT_ALIGN_RIGHT
 btn_panel.add_control(btn23)
 
-edit1 = BFEdit(screen, (20,140,160,40),text='test1')
+edit1 = BFEdit(screen, (20,140,160,40),text=u'编辑1')
 btn_panel.add_control(edit1)
-edit2 = BFEdit(screen, (200,140,160,40),text='test2')
+edit2 = BFEdit(screen, (200,140,160,40),text=u'编辑2')
 edit2.text_align = TEXT_ALIGN_LEFT
 btn_panel.add_control(edit2)
-edit3 = BFEdit(screen, (380,140,160,40),text='test3')
+edit3 = BFEdit(screen, (380,140,160,40),text=u'编辑3')
 edit3.text_align = TEXT_ALIGN_RIGHT
 btn_panel.add_control(edit3)
 

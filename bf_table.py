@@ -1,12 +1,8 @@
 # -*- coding=utf-8 -*-
-import time
-import threading
-import platform
+import time,sys,threading,platform
 import pygame
 from pygame.locals import MOUSEBUTTONDOWN,KEYDOWN,SCRAP_TEXT
 from bf_common import BFControlId,BFBase,DEFAULT_FONT,get_default_font
-from bf_label import BFLabel
-from bf_edit import BFEdit
 
 black = (50,50,50)
 class ColInfo(object):
@@ -46,7 +42,7 @@ class RowInfo(object):
 CLICK_EFFECT_TIME = 100
 class BFTable(BFBase):
     def __init__(self, parent, rect, columns, rows):
-        super().__init__()
+        super(BFTable, self).__init__()
         self.x,self.y,self.width,self.height = rect
         self.bg_color = (255,255,255)
         self.parent = parent
@@ -89,7 +85,8 @@ class BFTable(BFBase):
                 tmp_rect = (self._col_width*j,y,self._col_width,self._row_height)
                 tmp_surface = None if y + self._row_height > self.height else self.surface.subsurface(tmp_rect)
                 item = RowItem(tmp_surface,v)
-                row_image = self._row_font.render(str(v),True,black)
+                if sys.version_info >= (3,0) or type(v) is not unicode: v = str(v)
+                row_image = self._row_font.render(v,True,black)
                 w, h = row_image.get_size()
                 item.x = (self._col_width - w) / 2
                 item.y = (self._row_height - h) / 2

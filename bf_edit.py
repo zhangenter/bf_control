@@ -1,7 +1,5 @@
 # -*- coding=utf-8 -*-
-import time
-import threading
-import platform
+import time,sys,threading,platform
 import pygame
 from pygame.locals import MOUSEBUTTONDOWN,KEYDOWN,SCRAP_TEXT
 from bf_common import BFControlId,BFBase,DEFAULT_FONT,TEXT_ALIGN_LEFT,TEXT_ALIGN_MIDDLE,TEXT_ALIGN_RIGHT
@@ -10,7 +8,7 @@ CLICK_EFFECT_TIME = 100
 PADDING = 4
 class BFEdit(BFBase):
     def __init__(self, parent, rect, text='Button', click=None):
-        super().__init__()
+        super(BFEdit,self).__init__()
         self.x,self.y,self.width,self.height = rect
         self.bg_color = (255,255,255)
         self.parent = parent
