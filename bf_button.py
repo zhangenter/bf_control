@@ -2,7 +2,7 @@
 import threading
 import pygame
 from pygame.locals import MOUSEBUTTONDOWN
-from bf_common import BFControlId,BFBase
+from bf_common import BFControlId,BFBase,DEFAULT_FONT
 
 CLICK_EFFECT_TIME = 100
 class BFButton(BFBase):
@@ -24,7 +24,7 @@ class BFButton(BFBase):
     
 
     def init_font(self):
-        font = pygame.font.Font(None, 28)
+        font = DEFAULT_FONT
         white = 100, 100, 100
         self.textImage = font.render(self._text, True, white)
         w, h = self.textImage.get_size()

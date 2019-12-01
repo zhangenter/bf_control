@@ -4,7 +4,7 @@ import threading
 import platform
 import pygame
 from pygame.locals import MOUSEBUTTONDOWN,KEYDOWN,SCRAP_TEXT
-from bf_common import BFControlId,BFBase
+from bf_common import BFControlId,BFBase,DEFAULT_FONT
 
 CLICK_EFFECT_TIME = 100
 class BFEdit(BFBase):
@@ -26,7 +26,7 @@ class BFEdit(BFBase):
         self.in_edit = False
 
     def init_font(self):
-        font = pygame.font.Font(None, 28)
+        font = DEFAULT_FONT
         white = 100, 100, 100
         self.textImage = font.render(self._text, True, white)
         self.cursorImage = font.render('|', True, (170,205,255))
@@ -62,7 +62,7 @@ class BFEdit(BFBase):
                 scrap_text = pygame.scrap.get(SCRAP_TEXT)
                 if scrap_text:
                     if 'Windows' in platform.platform():
-                        scrap_text = scrap_text.decode('utf-8').strip('\x00')
+                        scrap_text = scrap_text.decode('gbk').strip('\x00')
                     self.text = self._text+scrap_text
             else:
                 self.text = self._text+event.unicode

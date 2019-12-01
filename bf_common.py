@@ -26,3 +26,4 @@ class BFBase(object):
         pass
 
 CLICK_EFFECT_TIME = 100
+DEFAULT_FONT = pygame.font.Font(u'syht.otf', 28)

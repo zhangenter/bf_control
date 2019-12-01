@@ -1,13 +1,15 @@
 # -*- coding=utf-8 -*-
 import pygame
+
+pygame.init()
+screen = pygame.display.set_mode((400,400))
+pygame.scrap.init()
+
 from bf_edit import BFEdit
 from bf_button import BFButton
 from bf_panel import BFPanel
 
-pygame.init()
 screencaption = pygame.display.set_caption('bf control')
-screen = pygame.display.set_mode((400,400))
-pygame.scrap.init()
 
 def do_click1(btn):
     pygame.display.set_caption('i click %s,ctl id is %s' % (btn._text,btn.ctl_id))
@@ -21,7 +23,7 @@ def do_click3(btn):
     exit()
 
 btn_panel = BFPanel()
-btn_panel.add_control(BFButton(screen, (120,20,160,40),text='Play',click=do_click1))
+btn_panel.add_control(BFButton(screen, (120,20,160,40),text=u'测试',click=do_click1))
 btn_panel.add_control(BFButton(screen, (120,70,160,40),text='Hide',click=do_click2))
 btn_panel.add_control(BFButton(screen, (120,120,160,40),text='Quit',click=do_click3))
 edit1 = BFEdit(screen, (120,170,160,40),text='test1')
