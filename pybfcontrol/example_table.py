@@ -5,8 +5,8 @@ pygame.init()
 screen = pygame.display.set_mode((600,420))
 pygame.scrap.init()
 
-from py_bf_control.bf_panel import BFPanel
-from py_bf_control.bf_table import BFTable
+from pybfcontrol.bf_panel import BFPanel
+from pybfcontrol.bf_table import BFTable
 
 screencaption = pygame.display.set_caption('bf control')
 

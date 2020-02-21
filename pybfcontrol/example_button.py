@@ -1,9 +1,9 @@
 # -*- coding=utf-8 -*-
 import pygame
 pygame.init()
-screen = pygame.display.set_mode((600,420))
 
-from py_bf_control.bf_button import BFButton
+from pybfcontrol.bf_button import BFButton
+screen = pygame.display.set_mode((600,420))
 
 def do_click1(btn):
     pygame.display.set_caption('i click %s,ctl id is %s' % (btn._text,btn.ctl_id))
