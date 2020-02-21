@@ -1,4 +1,5 @@
 #example
+'''
 import pygame
 pygame.init()
 
@@ -22,3 +23,4 @@ while True:
     btn.draw()
    
     pygame.display.update() 
+'''
