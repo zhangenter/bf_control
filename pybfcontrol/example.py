@@ -5,12 +5,12 @@ pygame.init()
 screen = pygame.display.set_mode((600,420))
 pygame.scrap.init()
 
-from bf_common import TEXT_ALIGN_LEFT,TEXT_ALIGN_MIDDLE,TEXT_ALIGN_RIGHT
-from bf_edit import BFEdit
-from bf_button import BFButton
-from bf_panel import BFPanel
-from bf_label import BFLabel
-from bf_table import BFTable
+from py_bf_control.bf_common import TEXT_ALIGN_LEFT,TEXT_ALIGN_MIDDLE,TEXT_ALIGN_RIGHT
+from py_bf_control.bf_edit import BFEdit
+from py_bf_control.bf_button import BFButton
+from py_bf_control.bf_panel import BFPanel
+from py_bf_control.bf_label import BFLabel
+from py_bf_control.bf_table import BFTable
 
 screencaption = pygame.display.set_caption('bf control')
 

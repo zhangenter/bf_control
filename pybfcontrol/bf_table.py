@@ -1,8 +1,7 @@
 # -*- coding=utf-8 -*-
-import time,sys,threading,platform
+import sys
 import pygame
-from pygame.locals import MOUSEBUTTONDOWN,KEYDOWN,SCRAP_TEXT
-from bf_common import BFControlId,BFBase,DEFAULT_FONT,get_default_font
+from py_bf_control.bf_common import BFControlId,BFBase, get_default_font
 
 black = (50,50,50)
 class ColInfo(object):

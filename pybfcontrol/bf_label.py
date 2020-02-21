@@ -1,8 +1,7 @@
 # -*- coding=utf-8 -*-
-import time,sys,threading,platform
 import pygame
 from pygame.locals import MOUSEBUTTONDOWN
-from bf_common import BFControlId,BFBase,DEFAULT_FONT,DEFAULT_SM_FONT,TEXT_ALIGN_LEFT,TEXT_ALIGN_MIDDLE,TEXT_ALIGN_RIGHT
+from py_bf_control.bf_common import BFControlId,BFBase, TEXT_ALIGN_LEFT,TEXT_ALIGN_MIDDLE
 
 CLICK_EFFECT_TIME = 100
 PADDING = 4
